@@ -16,11 +16,12 @@ describe('server', () => {
 				});
 		});
 
-		it('should return json', () => {
+		it("should return an 'api' property with the value 'up' inside the body", function() {
 			return request(server)
-				.get('/api/pets')
+				.get('/')
 				.then(res => {
-					expect(res.type).toMatch(/json/);
+					// expect(res.body).toEqual({ api: "up" });
+					expect(res.body.api).toBe('running');
 				});
 		});
 	});

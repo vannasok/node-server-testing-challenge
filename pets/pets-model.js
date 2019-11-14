@@ -25,7 +25,15 @@ function getById(id) {
 }
 
 function addPet(pet) {
-	return db('pets').insert(pet);
+	return db('pets')
+		.insert(pet, 'id')
+		.then(ids => {
+			const id = ids[0];
+			// const [id] = ids;
+			return db('hobbits')
+				.where({ id })
+				.first();
+		});
 }
 
 function deleteById(id) {
