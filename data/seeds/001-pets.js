@@ -5,9 +5,9 @@ exports.seed = function(knex) {
 		.then(function() {
 			// Inserts seed entries
 			return knex('pets').insert([
-				{ name: 'LuLu', breed: 'cat' },
-				{ name: 'NaNa', breed: 'dog' },
-				{ name: 'da G', breed: 'fish' }
+				{ name: 'Ama', breed: 'cat' },
+				{ name: 'Nana', breed: 'dog' },
+				{ name: 'Da G', breed: 'husky' }
 			]);
 		});
 };
