@@ -1,13 +1,13 @@
 const db = require('../data/dbConfig');
 
 module.exports = {
-	getPets,
-	deleteById,
-	addPet,
+	get,
+	remove,
+	insert,
 	getById
 };
 
-function getPets() {
+function get() {
 	return db('pets');
 }
 
@@ -24,19 +24,11 @@ function getById(id) {
 		});
 }
 
-function addPet(pet) {
-	return db('pets')
-		.insert(pet, 'id')
-		.then(ids => {
-			const id = ids[0];
-			// const [id] = ids;
-			return db('hobbits')
-				.where({ id })
-				.first();
-		});
+function insert(pet) {
+	return db('pets').insert(pet);
 }
 
-function deleteById(id) {
+function remove(id) {
 	return db('pets')
 		.where({ id })
 		.del();

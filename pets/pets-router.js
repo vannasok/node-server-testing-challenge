@@ -6,7 +6,7 @@ const Pets = require('./pets-model');
 router.use(express.json());
 
 router.get('/', async (req, res) => {
-	const pets = await Pets.getPets();
+	const pets = await Pets.get();
 	if (pets) {
 		res.status(200).json(pets);
 	} else {
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 	if (!name || !breed) {
 		res.status(400).json({ message: 'Please add a name, and breed' });
 	} else {
-		const [id] = (pet = await Pets.addPet(req.body));
+		const [id] = (pet = await Pets.insert(req.body));
 		const newPet = await Pets.getById(id);
 		res.status(200).json(newPet);
 	}
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
 	const { id } = req.params;
-	const remove = await Pets.deleteById(id);
+	const remove = await Pets.remove(id);
 
 	if (remove) {
 		res.status(200).json({ message: 'Deleted pet' });
